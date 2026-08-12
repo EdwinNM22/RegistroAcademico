@@ -1,7 +1,6 @@
 export type Nota = {
   id: number
-  inscripcion_id: number
+  periodo_id: number
   valor: number
-  tipo: string
   created_at: Date
 }
