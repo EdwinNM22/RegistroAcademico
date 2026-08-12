@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { cerrarSesion, obtenerUsuario } from '../auth/storage'
 import './dashboard-shell.css'
 
 type Props = {
@@ -9,6 +10,12 @@ type Props = {
 
 export function DashboardShell({ titulo, children }: Props) {
   const navigate = useNavigate()
+  const usuario = obtenerUsuario()
+
+  function salir() {
+    cerrarSesion()
+    navigate('/login')
+  }
 
   return (
     <div className="dash-page">
@@ -18,8 +25,15 @@ export function DashboardShell({ titulo, children }: Props) {
           <h1>{titulo}</h1>
         </div>
         <div className="dash-user">
-          <button type="button" onClick={() => navigate('/login')}>
-            Ir al login
+          {usuario ? (
+            <div>
+              <strong>{usuario.nombre}</strong>
+              <span>{usuario.email}</span>
+              <span className="dash-rol">{usuario.rol}</span>
+            </div>
+          ) : null}
+          <button type="button" onClick={salir}>
+            Cerrar sesión
           </button>
         </div>
       </header>

@@ -34,6 +34,29 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+  text-align: right;
+}
+
+.dash-user strong {
+  display: block;
+  color: #0f2438;
+}
+
+.dash-user span {
+  display: block;
+  font-size: 0.85rem;
+  color: #4a5d70;
+}
+
+.dash-rol {
+  display: inline-block !important;
+  margin-top: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  background: rgba(13, 148, 136, 0.12);
+  color: #0f766e !important;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 0.75rem !important;
 }
 
 .dash-user button {

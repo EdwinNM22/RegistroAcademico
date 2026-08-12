@@ -1,11 +1,52 @@
-import { type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { type FormEvent, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { ApiError, apiFetch } from '../auth/api'
+import {
+  guardarAuth,
+  obtenerToken,
+  obtenerUsuario,
+  rutaDashboardPorRol,
+  type AuthUsuario,
+} from '../auth/storage'
 import './Login.css'
 
+type LoginResponse = {
+  token: string
+  usuario: AuthUsuario
+}
+
 export function Login() {
-  function onSubmit(e: FormEvent) {
+  const navigate = useNavigate()
+  const token = obtenerToken()
+  const usuario = obtenerUsuario()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  if (token && usuario) {
+    return <Navigate to={rutaDashboardPorRol(usuario.rol)} replace />
+  }
+
+  async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    // La autenticación con JWT se hará en la siguiente etapa
+    setError('')
+    setLoading(true)
+
+    try {
+      const data = await apiFetch<LoginResponse>('/auth/login', {
+        method: 'POST',
+        body: { email, password },
+        auth: false,
+      })
+      guardarAuth(data.token, data.usuario)
+      navigate(rutaDashboardPorRol(data.usuario.rol))
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'No se pudo iniciar sesión')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -15,8 +56,7 @@ export function Login() {
         <p className="login-brand">Registro Académico</p>
         <h1>Iniciar sesión</h1>
         <p className="login-sub">
-          Formulario de acceso. El inicio de sesión real con JWT se conectará en
-          la siguiente etapa.
+          Ingresa con la cuenta que te asignó jefatura.
         </p>
 
         <form className="login-form" onSubmit={onSubmit}>
@@ -26,6 +66,8 @@ export function Login() {
               type="email"
               required
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="correo@universidad.edu"
             />
           </label>
@@ -36,19 +78,18 @@ export function Login() {
               type="password"
               required
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
             />
           </label>
 
-          <button type="submit">Entrar</button>
-        </form>
+          {error ? <p className="login-error">{error}</p> : null}
 
-        <nav className="login-preview" aria-label="Vistas de dashboard">
-          <p>Vista previa (sin auth):</p>
-          <Link to="/dashboard/alumno">Alumno</Link>
-          <Link to="/dashboard/profesor">Profesor</Link>
-          <Link to="/dashboard/jefe">Jefe</Link>
-        </nav>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Entrando…' : 'Entrar'}
+          </button>
+        </form>
       </main>
     </div>
   )
