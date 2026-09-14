@@ -49,7 +49,10 @@ export async function ensureDatabaseExists(config: DbConfig): Promise<void> {
     )
 
     if (rows.length === 0) {
-      await admin.query(`CREATE DATABASE ${dbName}`)
+      // template0 evita fallos si template1 tiene collation desactualizada tras actualizar el SO.
+      await admin.query(
+        `CREATE DATABASE ${dbName} WITH TEMPLATE template0 ENCODING 'UTF8'`,
+      )
     }
   } finally {
     await admin.end()
