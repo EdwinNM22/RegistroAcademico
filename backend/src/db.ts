@@ -1,5 +1,10 @@
 import pg from 'pg'
-import { applySchema, ensureDatabaseExists, getDbConfig } from './init-db.js'
+import {
+  applySchema,
+  applySeed,
+  ensureDatabaseExists,
+  getDbConfig,
+} from './init-db.js'
 
 const { Pool } = pg
 
@@ -10,6 +15,7 @@ export async function initializeDatabase(): Promise<void> {
   await ensureDatabaseExists(config)
   pool = new Pool(config)
   await applySchema(pool)
+  await applySeed(pool)
 }
 
 export async function checkDatabase(): Promise<boolean> {

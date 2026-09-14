@@ -64,3 +64,9 @@ export async function applySchema(pool: pg.Pool): Promise<void> {
   const sql = await readFile(schemaPath, 'utf8')
   await pool.query(sql)
 }
+
+export async function applySeed(pool: pg.Pool): Promise<void> {
+  const seedPath = path.join(process.cwd(), 'sql', 'seed_jefe.sql')
+  const sql = await readFile(seedPath, 'utf8')
+  await pool.query(sql)
+}
