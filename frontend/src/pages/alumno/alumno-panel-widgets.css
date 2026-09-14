@@ -1,0 +1,115 @@
+.alumno-widget.card {
+  padding: 1.15rem 1.25rem 1rem;
+  background: var(--unicaes-glass-bg);
+  backdrop-filter: blur(var(--unicaes-glass-blur));
+  -webkit-backdrop-filter: blur(var(--unicaes-glass-blur));
+  border: 1px solid var(--unicaes-glass-border);
+  box-shadow: var(--unicaes-glass-shadow);
+}
+
+.alumno-widget__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.alumno-widget__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--unicaes-texto);
+}
+
+.alumno-widget__links {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.alumno-widget__link {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--unicaes-vino);
+  text-decoration: none;
+}
+
+.alumno-widget__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.alumno-notas-table-wrap {
+  overflow-x: auto;
+}
+
+.alumno-notas-table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.alumno-notas-table th,
+.alumno-notas-table td {
+  padding: 0.55rem 0.5rem;
+  border-bottom: 1px solid var(--unicaes-borde);
+  text-align: center;
+}
+
+.alumno-notas-table thead th {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--unicaes-texto-muted);
+  background: rgba(128, 35, 34, 0.04);
+}
+
+.alumno-notas-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--unicaes-texto);
+}
+
+.alumno-notas-table tbody td {
+  font-weight: 600;
+  color: var(--unicaes-vino);
+}
+
+.alumno-notas-table tbody td:last-child {
+  font-weight: 500;
+  color: var(--unicaes-texto);
+}
+
+.alumno-notas-table tbody tr:last-child th,
+.alumno-notas-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.alumno-widget--calendar .alumno-cal__day {
+  min-height: 2rem;
+  padding: 0.15rem 0.05rem 0.2rem;
+}
+
+.alumno-widget--calendar .alumno-cal__day-num {
+  font-size: 0.76rem;
+}
+
+.alumno-widget--calendar .alumno-cal__weekday {
+  font-size: 0.65rem;
+}
+
+.alumno-widget--calendar .alumno-cal__events {
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+}
+
+.alumno-widget--calendar .alumno-cal__event {
+  padding: 0.4rem 0.5rem;
+}
+
+.alumno-widget--calendar .alumno-cal__event-title {
+  font-size: 0.8rem;
+}

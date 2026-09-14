@@ -1,0 +1,49 @@
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(128, 35, 34, 0.08);
+  border: 3px solid rgba(128, 35, 34, 0.15);
+  color: var(--unicaes-vino);
+}
+
+.user-avatar--lg {
+  width: 6.5rem;
+  height: 6.5rem;
+}
+
+.user-avatar--md {
+  width: 3rem;
+  height: 3rem;
+}
+
+.user-avatar--image {
+  object-fit: cover;
+}
+
+.user-avatar__initials {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.user-avatar--lg .user-avatar__initials {
+  font-size: 1.5rem;
+}
+
+.user-avatar--md .user-avatar__initials {
+  font-size: 0.85rem;
+}
+
+.user-avatar__icon {
+  width: 42%;
+  height: 42%;
+  opacity: 0.7;
+}
+
+.user-avatar--md .user-avatar__icon {
+  width: 50%;
+  height: 50%;
+}

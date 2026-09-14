@@ -2,17 +2,25 @@ import { type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { cerrarSesion, obtenerUsuario } from '../../auth/storage'
 import { AppNavbar } from './AppNavbar'
+import { DashboardSidebar, type SidebarNavItem } from './DashboardSidebar'
+import { NavbarUserActions } from './NavbarUserActions'
 import { PageBackdrop } from './PageBackdrop'
-import { Button } from '../ui/Button'
 import './app-page-layout.css'
 import './dashboard-layout.css'
 
 type DashboardLayoutProps = {
-  titulo: string
+  titulo?: string
   children: ReactNode
+  sidebarItems?: SidebarNavItem[]
+  fotoUrl?: string | null
 }
 
-export function DashboardLayout({ titulo, children }: DashboardLayoutProps) {
+export function DashboardLayout({
+  titulo,
+  children,
+  sidebarItems,
+  fotoUrl,
+}: DashboardLayoutProps) {
   const navigate = useNavigate()
   const usuario = obtenerUsuario()
 
@@ -25,28 +33,30 @@ export function DashboardLayout({ titulo, children }: DashboardLayoutProps) {
     <div className="app-page-layout">
       <AppNavbar
         actions={
-          <div className="dashboard-layout__user">
-            {usuario ? (
-              <div className="dashboard-layout__user-info">
-                <strong>{usuario.nombre}</strong>
-                <span>{usuario.email}</span>
-                <span className="dashboard-layout__rol">{usuario.rol}</span>
-              </div>
-            ) : null}
-            <Button variant="secondary" size="sm" onClick={salir}>
-              Cerrar sesión
-            </Button>
-          </div>
+          usuario ? <NavbarUserActions usuario={usuario} onLogout={salir} /> : null
         }
       />
       <div className="dashboard-layout__body">
         <PageBackdrop gradient="subtle" />
-        <main className="dashboard-layout__main">
-          <header className="dashboard-layout__header">
-            <h1>{titulo}</h1>
-          </header>
-          {children}
-        </main>
+        <div className="dashboard-layout__content">
+          {usuario ? (
+            <DashboardSidebar
+              usuario={usuario}
+              items={sidebarItems}
+              fotoUrl={fotoUrl}
+            />
+          ) : null}
+          <main
+            className={`dashboard-layout__main${titulo ? '' : ' dashboard-layout__main--compact'}`}
+          >
+            {titulo ? (
+              <header className="dashboard-layout__header">
+                <h1>{titulo}</h1>
+              </header>
+            ) : null}
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   )

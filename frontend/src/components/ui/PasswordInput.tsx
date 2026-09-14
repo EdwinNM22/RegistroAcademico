@@ -1,6 +1,5 @@
+import { Eye, EyeOff } from 'lucide-react'
 import { useState, type InputHTMLAttributes } from 'react'
-import { EyeIcon } from '../icons/EyeIcon'
-import { EyeOffIcon } from '../icons/EyeOffIcon'
 import './form-field.css'
 import './password-input.css'
 
@@ -22,7 +21,7 @@ export function PasswordInput({ className = '', ...props }: PasswordInputProps) 
         onClick={() => setVisible((value) => !value)}
         aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'}
       >
-        {visible ? <EyeOffIcon /> : <EyeIcon />}
+        {visible ? <EyeOff size={20} aria-hidden /> : <Eye size={20} aria-hidden />}
       </button>
     </div>
   )

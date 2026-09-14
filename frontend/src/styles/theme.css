@@ -7,6 +7,12 @@
   --unicaes-borde: rgba(128, 35, 34, 0.14);
   --unicaes-borde-input: #d4c4c3;
   --unicaes-panel-bg: rgba(255, 255, 255, 0.94);
+  --unicaes-glass-bg: rgba(255, 255, 255, 0.72);
+  --unicaes-glass-blur: 10px;
+  --unicaes-glass-border: rgba(255, 255, 255, 0.42);
+  --unicaes-glass-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 4px 14px rgba(0, 0, 0, 0.08);
   --unicaes-error: #9f1d1d;
   --unicaes-radio: 0.5rem;
   --unicaes-radio-lg: 1rem;

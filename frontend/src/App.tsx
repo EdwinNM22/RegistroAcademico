@@ -11,7 +11,7 @@ export default function App() {
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/dashboard/alumno"
+        path="/dashboard/alumno/*"
         element={
           <RequireAuth roles={['alumno']}>
             <DashboardAlumno />

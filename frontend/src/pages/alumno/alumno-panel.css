@@ -1,0 +1,151 @@
+.alumno-panel-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.alumno-panel-page__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.alumno-panel__heading {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.75),
+    0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.alumno-panel__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.alumno-panel__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 5.25rem;
+  padding: 0.85rem 0.45rem;
+  border: 1px solid var(--unicaes-glass-border);
+  border-radius: var(--unicaes-radio-lg);
+  background: var(--unicaes-glass-bg);
+  backdrop-filter: blur(var(--unicaes-glass-blur));
+  -webkit-backdrop-filter: blur(var(--unicaes-glass-blur));
+  box-shadow: var(--unicaes-glass-shadow);
+  color: var(--unicaes-texto);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    color 0.18s ease;
+}
+
+.alumno-panel__item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(128, 35, 34, 0.22);
+  color: var(--unicaes-vino);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.alumno-panel__item:focus-visible {
+  outline: 2px solid var(--unicaes-dorado);
+  outline-offset: 2px;
+}
+
+.alumno-panel__item--active {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(128, 35, 34, 0.35);
+  color: var(--unicaes-vino);
+  font-weight: 600;
+  box-shadow:
+    0 0 0 1px rgba(128, 35, 34, 0.12),
+    0 6px 18px rgba(128, 35, 34, 0.12);
+}
+
+.alumno-panel__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 0.65rem;
+  background: rgba(128, 35, 34, 0.07);
+  transition: background 0.18s ease;
+}
+
+.alumno-panel__item:hover .alumno-panel__icon-wrap,
+.alumno-panel__item--active .alumno-panel__icon-wrap {
+  background: rgba(128, 35, 34, 0.12);
+}
+
+.alumno-panel__icon {
+  flex-shrink: 0;
+  color: var(--unicaes-vino);
+}
+
+.alumno-panel__label {
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .alumno-panel__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .alumno-panel-page {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .alumno-panel-page__left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .alumno-panel-page__calendar {
+    flex: 0 0 min(22rem, 32%);
+    max-width: 22rem;
+  }
+
+  .alumno-panel__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .alumno-panel__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1400px) {
+  .alumno-panel__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
