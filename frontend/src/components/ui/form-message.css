@@ -1,0 +1,8 @@
+.form-message {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.form-message--error {
+  color: var(--unicaes-error);
+}

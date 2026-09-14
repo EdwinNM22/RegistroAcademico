@@ -1,0 +1,17 @@
+:root {
+  --unicaes-vino: #802322;
+  --unicaes-vino-oscuro: #601a1a;
+  --unicaes-dorado: #f1c45d;
+  --unicaes-texto: #2a1514;
+  --unicaes-texto-muted: #6b5655;
+  --unicaes-borde: rgba(128, 35, 34, 0.14);
+  --unicaes-borde-input: #d4c4c3;
+  --unicaes-panel-bg: rgba(255, 255, 255, 0.94);
+  --unicaes-error: #9f1d1d;
+  --unicaes-radio: 0.5rem;
+  --unicaes-radio-lg: 1rem;
+  --unicaes-sombra-panel:
+    0 4px 6px rgba(0, 0, 0, 0.06),
+    0 12px 28px rgba(0, 0, 0, 0.12),
+    0 24px 48px rgba(0, 0, 0, 0.18);
+}

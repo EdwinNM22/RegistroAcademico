@@ -1,0 +1,46 @@
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--unicaes-borde);
+}
+
+.brand-header__logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.brand-header__text {
+  min-width: 0;
+}
+
+.brand-header__title {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: var(--unicaes-vino);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.brand-header__institution {
+  margin: 0.3rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--unicaes-texto-muted);
+  line-height: 1.35;
+}
+
+.brand-header__sede {
+  margin: 0.25rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--unicaes-vino);
+  line-height: 1.35;
+}

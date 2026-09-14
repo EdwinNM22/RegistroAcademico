@@ -1,7 +1,7 @@
 import { type FormEvent, useState } from 'react'
 import { ApiError, apiFetch } from '../auth/api'
 import type { RolUsuario } from '../auth/storage'
-import { DashboardShell } from '../components/DashboardShell'
+import { Card, DashboardLayout } from '../components'
 import './DashboardJefe.css'
 
 type CrearUsuarioResponse = {
@@ -54,9 +54,9 @@ export function DashboardJefe() {
   }
 
   return (
-    <DashboardShell titulo="Espacio de jefatura">
-      <section className="dash-section">
-        <h2>Crear usuario</h2>
+    <DashboardLayout titulo="Espacio de jefatura">
+      <Card as="section">
+        <h2 className="card__title card__title--left">Crear usuario</h2>
         <p>
           Solo jefatura puede dar de alta alumnos, profesores u otros jefes.
         </p>
@@ -116,7 +116,7 @@ export function DashboardJefe() {
             {loading ? 'Creando…' : 'Crear usuario'}
           </button>
         </form>
-      </section>
-    </DashboardShell>
+      </Card>
+    </DashboardLayout>
   )
 }

@@ -1,21 +1,21 @@
-import { DashboardShell } from '../components/DashboardShell'
+import { Card, DashboardLayout } from '../components'
 
 export function DashboardProfesor() {
   return (
-    <DashboardShell titulo="Espacio del profesor">
-      <section className="dash-section">
-        <h2>Mis herramientas</h2>
+    <DashboardLayout titulo="Espacio del profesor">
+      <Card as="section">
+        <h2 className="card__title card__title--left">Mis herramientas</h2>
         <p>
           Vista propia del docente: operar sobre grupos y evaluaciones, no
           matrícula personal.
         </p>
-        <ul className="dash-list">
+        <ul>
           <li>Grupos / materias asignadas</li>
           <li>Carga y edición de notas</li>
           <li>Registro de asistencias</li>
           <li>Listado de alumnos por materia</li>
         </ul>
-      </section>
-    </DashboardShell>
+      </Card>
+    </DashboardLayout>
   )
 }

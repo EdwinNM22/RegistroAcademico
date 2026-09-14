@@ -1,8 +1,10 @@
+@import './styles/theme.css';
+
 :root {
-  --text: #4a5d70;
-  --text-h: #0f2438;
+  --text: #5c4a49;
+  --text-h: #2a1514;
   --bg: #e8eef4;
-  --accent: #0d9488;
+  --accent: #802322;
 
   --sans: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
 

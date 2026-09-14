@@ -1,0 +1,28 @@
+.card {
+  background: var(--unicaes-panel-bg);
+  border: 1px solid rgba(128, 35, 34, 0.12);
+  border-radius: var(--unicaes-radio-lg);
+  box-shadow: var(--unicaes-sombra-panel);
+}
+
+.card--narrow {
+  width: min(100%, 26rem);
+  padding: 2rem 1.75rem;
+}
+
+.card--default {
+  padding: 1.5rem 1.75rem;
+}
+
+.card__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--unicaes-texto);
+}
+
+.card__title--left {
+  text-align: left;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}

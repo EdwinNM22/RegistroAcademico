@@ -9,7 +9,19 @@ import {
   rutaDashboardPorRol,
   type AuthUsuario,
 } from '../auth/storage'
-import './Login.css'
+import {
+  AppPageLayout,
+  BrandHeader,
+  Button,
+  Card,
+  FormField,
+  FormMessage,
+  FormStack,
+  PageHero,
+  PasswordInput,
+  SelectInput,
+  TextInput,
+} from '../components'
 
 type LoginResponse = {
   token: string
@@ -26,7 +38,6 @@ export function Login() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [devAbierto, setDevAbierto] = useState(false)
-  const [mostrarPassword, setMostrarPassword] = useState(false)
 
   if (token && usuario) {
     return <Navigate to={rutaDashboardPorRol(usuario.rol)} replace />
@@ -67,165 +78,89 @@ export function Login() {
   }
 
   return (
-    <div className="login-page">
-      <header className="login-navbar">
-        <img
-          src="/images/logo-unicaes.png"
-          alt="Universidad Católica de El Salvador"
-          className="login-navbar-logo"
+    <AppPageLayout
+      hero={
+        <PageHero
+          eyebrow="Universidad Católica de El Salvador"
+          title="Registro Académico"
+          description="Accede a tu información académica, gestiona evaluaciones y administra el proceso formativo de la comunidad UNICAES."
+          quote="«La Ciencia sin Moral es Vana»"
+          items={[
+            'Consulta de notas y promedios',
+            'Registro de asistencias',
+            'Gestión de inscripciones',
+          ]}
         />
-      </header>
+      }
+    >
+      <Card variant="narrow">
+        <BrandHeader />
+        <h1 className="card__title">Iniciar sesión</h1>
 
-      <div className="login-body">
-        <div className="login-backdrop" aria-hidden="true" />
+        <form onSubmit={onSubmit}>
+          <FormStack>
+            <FormField label="Correo">
+              <TextInput
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="correo@universidad.edu"
+              />
+            </FormField>
 
-        <aside className="login-hero">
-          <p className="login-hero-eyebrow">Universidad Católica de El Salvador</p>
-          <h2 className="login-hero-title">Registro Académico</h2>
-          <p className="login-hero-text">
-            Accede a tu información académica, gestiona evaluaciones y
-            administra el proceso formativo de la comunidad UNICAES.
-          </p>
-          <blockquote className="login-hero-quote">
-            «La Ciencia sin Moral es Vana»
-          </blockquote>
-          <ul className="login-hero-list">
-            <li>Consulta de notas y promedios</li>
-            <li>Registro de asistencias</li>
-            <li>Gestión de inscripciones</li>
-          </ul>
-        </aside>
-
-        <main className="login-panel">
-          <div className="login-panel-brand">
-            <img
-              src="/images/unicaes-logo.png"
-              alt="UNICAES"
-              className="login-panel-logo"
-            />
-            <div className="login-panel-brand-text">
-              <p className="login-brand">Registro Académico</p>
-              <p className="login-brand-institution">
-                Universidad Católica de El Salvador
-              </p>
-              <p className="login-brand-sede">Sede: Santa Ana</p>
-            </div>
-          </div>
-          <h1>Iniciar sesión</h1>
-
-          <form className="login-form" onSubmit={onSubmit}>
-          <label>
-            Correo
-            <input
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="correo@universidad.edu"
-            />
-          </label>
-
-          <label>
-            Contraseña
-            <div className="login-password-field">
-              <input
-                type={mostrarPassword ? 'text' : 'password'}
+            <FormField label="Contraseña">
+              <PasswordInput
                 required
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="login-password-input"
               />
-              <button
-                type="button"
-                className="login-password-toggle"
-                onClick={() => setMostrarPassword((visible) => !visible)}
-                aria-label={
-                  mostrarPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
-                }
-              >
-                {mostrarPassword ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
+            </FormField>
+
+            <FormMessage>{error}</FormMessage>
+
+            <Button type="submit" variant="primary" block disabled={loading}>
+              {loading ? 'Entrando…' : 'Entrar'}
+            </Button>
+
+            {import.meta.env.DEV ? (
+              <div>
+                {!devAbierto ? (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    block
+                    onClick={() => setDevAbierto(true)}
                   >
-                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
-                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
-                    <path d="M1 1l22 22" />
-                    <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
-                  </svg>
+                    Cuenta de prueba
+                  </Button>
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </label>
-
-          {error ? <p className="login-error">{error}</p> : null}
-
-          <button type="submit" className="login-submit" disabled={loading}>
-            {loading ? 'Entrando…' : 'Entrar'}
-          </button>
-
-          {import.meta.env.DEV ? (
-            <div className="login-dev">
-              {!devAbierto ? (
-                <button
-                  type="button"
-                  className="login-dev-toggle"
-                  onClick={() => setDevAbierto(true)}
-                >
-                  Cuenta de prueba
-                </button>
-              ) : (
-                <label className="login-dev-select">
-                  <span>Cuenta de prueba</span>
-                  <select
-                    autoFocus
-                    defaultValue=""
-                    onChange={(e) => onDevSelect(e.target.value)}
-                    onBlur={() => setDevAbierto(false)}
-                  >
-                    <option value="" disabled>
-                      Elegir rol…
-                    </option>
-                    {DEV_USUARIOS.map((devUsuario) => (
-                      <option key={devUsuario.rol} value={devUsuario.rol}>
-                        {devUsuario.label}
+                  <FormField label="Cuenta de prueba">
+                    <SelectInput
+                      autoFocus
+                      defaultValue=""
+                      onChange={(e) => onDevSelect(e.target.value)}
+                      onBlur={() => setDevAbierto(false)}
+                    >
+                      <option value="" disabled>
+                        Elegir rol…
                       </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-            </div>
-          ) : null}
-          </form>
-        </main>
-      </div>
-    </div>
+                      {DEV_USUARIOS.map((devUsuario) => (
+                        <option key={devUsuario.rol} value={devUsuario.rol}>
+                          {devUsuario.label}
+                        </option>
+                      ))}
+                    </SelectInput>
+                  </FormField>
+                )}
+              </div>
+            ) : null}
+          </FormStack>
+        </form>
+      </Card>
+    </AppPageLayout>
   )
 }
