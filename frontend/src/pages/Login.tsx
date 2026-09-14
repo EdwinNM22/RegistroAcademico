@@ -1,6 +1,7 @@
 import { type FormEvent, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { ApiError, apiFetch } from '../auth/api'
+import { apiFetch, ApiError } from '../auth/api'
+import { DEV_USUARIO_INICIAL, DEV_USUARIOS } from '../auth/devUsers'
 import {
   guardarAuth,
   obtenerToken,
@@ -20,13 +21,23 @@ export function Login() {
   const token = obtenerToken()
   const usuario = obtenerUsuario()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState(
+    import.meta.env.DEV ? DEV_USUARIO_INICIAL.email : '',
+  )
+  const [password, setPassword] = useState(
+    import.meta.env.DEV ? DEV_USUARIO_INICIAL.password : '',
+  )
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   if (token && usuario) {
     return <Navigate to={rutaDashboardPorRol(usuario.rol)} replace />
+  }
+
+  function rellenarUsuario(devEmail: string, devPassword: string) {
+    setEmail(devEmail)
+    setPassword(devPassword)
+    setError('')
   }
 
   async function onSubmit(e: FormEvent) {
@@ -58,6 +69,26 @@ export function Login() {
         <p className="login-sub">
           Ingresa con la cuenta que te asignó jefatura.
         </p>
+
+        {import.meta.env.DEV ? (
+          <div className="login-dev">
+            <p className="login-dev-title">Acceso rápido (desarrollo)</p>
+            <div className="login-dev-actions">
+              {DEV_USUARIOS.map((devUsuario) => (
+                <button
+                  key={devUsuario.rol}
+                  type="button"
+                  className="login-dev-btn"
+                  onClick={() =>
+                    rellenarUsuario(devUsuario.email, devUsuario.password)
+                  }
+                >
+                  {devUsuario.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         <form className="login-form" onSubmit={onSubmit}>
           <label>

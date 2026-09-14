@@ -8,7 +8,7 @@ const pool = new Pool(getDbConfig())
 
 try {
   await applySeed(pool)
-  console.log('Seed aplicada: usuario jefe inicial listo (si no existía).')
+  console.log('Seed aplicada: usuarios de desarrollo listos (si no existían).')
 } finally {
   await pool.end()
 }
