@@ -7,8 +7,8 @@ export function AlumnoPanel() {
   return (
     <div className="alumno-panel-page">
       <div className="alumno-panel-page__left">
-        <section className="alumno-panel" aria-label="Mis herramientas">
-          <h2 className="alumno-panel__heading">Mis herramientas</h2>
+        <section className="alumno-panel" aria-label="Mis módulos">
+          <h2 className="alumno-panel__heading">Mis módulos</h2>
           <ul className="alumno-panel__grid">
             {ALUMNO_MENU_ITEMS.map((item) => {
               const Icon = item.icon

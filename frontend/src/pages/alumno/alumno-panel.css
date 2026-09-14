@@ -40,12 +40,12 @@
   gap: 0.55rem;
   min-height: 5.25rem;
   padding: 0.85rem 0.45rem;
-  border: 1px solid var(--unicaes-glass-border);
+  border: 1px solid var(--unicaes-dashboard-glass-border);
   border-radius: var(--unicaes-radio-lg);
-  background: var(--unicaes-glass-bg);
-  backdrop-filter: blur(var(--unicaes-glass-blur));
-  -webkit-backdrop-filter: blur(var(--unicaes-glass-blur));
-  box-shadow: var(--unicaes-glass-shadow);
+  background: var(--unicaes-dashboard-glass-bg);
+  backdrop-filter: blur(var(--unicaes-dashboard-glass-blur)) saturate(1.12);
+  -webkit-backdrop-filter: blur(var(--unicaes-dashboard-glass-blur)) saturate(1.12);
+  box-shadow: var(--unicaes-dashboard-glass-shadow);
   color: var(--unicaes-texto);
   font-size: 0.8rem;
   font-weight: 500;
@@ -62,7 +62,7 @@
 
 .alumno-panel__item:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.97);
   border-color: rgba(128, 35, 34, 0.22);
   color: var(--unicaes-vino);
   box-shadow:
@@ -76,7 +76,7 @@
 }
 
 .alumno-panel__item--active {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   border-color: rgba(128, 35, 34, 0.35);
   color: var(--unicaes-vino);
   font-weight: 600;
@@ -92,18 +92,19 @@
   width: 2.65rem;
   height: 2.65rem;
   border-radius: 0.65rem;
-  background: rgba(128, 35, 34, 0.07);
+  background: rgba(128, 35, 34, 0.1);
   transition: background 0.18s ease;
 }
 
 .alumno-panel__item:hover .alumno-panel__icon-wrap,
 .alumno-panel__item--active .alumno-panel__icon-wrap {
-  background: rgba(128, 35, 34, 0.12);
+  background: rgba(128, 35, 34, 0.16);
 }
 
 .alumno-panel__icon {
   flex-shrink: 0;
   color: var(--unicaes-vino);
+  opacity: 1;
 }
 
 .alumno-panel__label {
