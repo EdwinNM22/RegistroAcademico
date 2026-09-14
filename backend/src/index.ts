@@ -2,9 +2,11 @@ import 'dotenv/config'
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
 import fjwt from '@fastify/jwt'
-import { checkDatabase } from './db.js'
+import { checkDatabase, initializeDatabase } from './db.js'
 import { authRoutes } from './routes/auth.js'
 import { usuariosRoutes } from './routes/usuarios.js'
+
+await initializeDatabase()
 
 const app = Fastify({ logger: true })
 

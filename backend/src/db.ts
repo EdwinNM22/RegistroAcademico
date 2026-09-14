@@ -1,17 +1,20 @@
 import pg from 'pg'
+import { applySchema, ensureDatabaseExists, getDbConfig } from './init-db.js'
 
 const { Pool } = pg
 
-export const pool = new Pool({
-  host: process.env.DB_HOST ?? 'localhost',
-  port: Number(process.env.DB_PORT) || 5432,
-  database: process.env.DB_NAME ?? 'registro_academico',
-  user: process.env.DB_USER ?? 'registro',
-  password: process.env.DB_PASSWORD ?? 'registro',
-})
+export let pool!: pg.Pool
+
+export async function initializeDatabase(): Promise<void> {
+  const config = getDbConfig()
+  await ensureDatabaseExists(config)
+  pool = new Pool(config)
+  await applySchema(pool)
+}
 
 export async function checkDatabase(): Promise<boolean> {
   try {
+    if (!pool) return false
     await pool.query('SELECT 1')
     return true
   } catch {
